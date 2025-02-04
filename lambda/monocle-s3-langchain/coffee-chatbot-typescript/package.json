@@ -1,0 +1,40 @@
+{
+  "name": "hello_world",
+  "version": "1.0.0",
+  "description": "hello world sample for NodeJS",
+  "main": "app.js",
+  "repository": "https://github.com/awslabs/aws-sam-cli/tree/develop/samcli/local/init/templates/cookiecutter-aws-sam-hello-nodejs",
+  "author": "SAM CLI",
+  "license": "MIT",
+  "dependencies": {
+    "axios": ">=1.6.0",
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/context-async-hooks": "^1.28.0",
+    "@opentelemetry/instrumentation": "^0.55.0",
+    "@opentelemetry/resources": "^1.28.0",
+    "@opentelemetry/sdk-trace-node": "^1.28.0",
+    "import-in-the-middle": "1.11.2",
+    "require-in-the-middle": "7.4.0",
+    "openai": "^4.73.1",
+    "aws-sdk": "^2.1692.0",
+    "@aws-sdk/client-s3": "^3.705.0",
+    "@azure/storage-blob": "^12.26.0",
+    "@eslint/js": "^9.16.0",
+    "@langchain/community": "^0.2.19",
+    "@langchain/openai": "^0.2.11",
+    "globals": "^15.12.0",
+    "hnswlib-node": "^3.0.0",
+    "langchain": "^0.2.19",
+    "@langchain/core": "^0.2.19",
+    "@opensearch-project/opensearch": "^2.13.0",
+    "ignore": "^5.2.0",
+    "monocle2ai": "^0.0.1-beta.1"
+  },
+  "scripts": {
+    "test": "mocha tests/unit/"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.2.0"
+  }
+}
