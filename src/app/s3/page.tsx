@@ -34,8 +34,13 @@ function App() {
     const handleFileClick = async (url: string) => {
         try {
             setLoading(true);
+            console.log('Fetching JSON:', url);
             const response = await fetch(url);
-            const jsonData = await response.json();
+            const ndJsonData = await response.text();
+            const jsonData = ndJsonData
+                .split('\n')
+                .filter((line) => line.trim())
+                .map((line) => JSON.parse(line));
             setJsonContent(jsonData);
             setShowOverlay(true);
         } catch (error) {
@@ -99,7 +104,7 @@ function App() {
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-6 z-50">
                     <div className="bg-white rounded-lg shadow-xl w-11/12 h-5/6 max-w-7xl mx-auto overflow-hidden">
                         <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-                            <h2 className="text-lg font-semibold text-gray-800">JSON Viewer</h2>
+                            <h2 className="text-lg font-semibold text-gray-800">NDJSON Viewer</h2>
                             <button
                                 onClick={() => setShowOverlay(false)}
                                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"

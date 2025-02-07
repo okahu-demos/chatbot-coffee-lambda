@@ -6,7 +6,6 @@ import { ChatMessages, ChatInput } from '@/components/chatComponents';
 
 interface ChatResponse {
   message: any;
-  spans: any[];
 }
 
 function App() {
@@ -80,7 +79,6 @@ function App() {
       console.error('Error', error);
     }
   };
-  const [spans, setSpans] = useState<any[]>([]);
 
   const handleSendMessage = (input: string) => {
     const newMessage = {
@@ -98,8 +96,6 @@ function App() {
 
     sendMessage(input).then((response:ChatResponse ) => {
       setMessages([...messages, newMessage, response.message]);
-      const spansWithAttributes = response.spans.filter((span: any) => {return typeof span.attributes["span.type"] === 'string'});
-      setSpans([...spans, spansWithAttributes]);
       setIsLoading(false);
       scrollToBottom();
     });

@@ -8,13 +8,16 @@ const s3Client = new S3Client({ region: 'us-east-1' , credentials:{
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_S3 || ''
 }});
 
+const tracesBucketName = process.env.AWS_S3BUCKET_NAME || '';
+
 export async function GET(request: Request) {
     const sessionId = request.headers.get('X-Session-Id');
     logger.info(`Listing S3 files for session: ${sessionId}`);
 
     try {
-        const bucketName = 'monocle-traces';
-        const prefix = 'monocle_trace__';
+        const bucketName = tracesBucketName;
+        let s3prefix = process.env.AWS_S3_PREFIX || 'monocle_trace__';
+        let prefix = `${s3prefix}${sessionId}`;
         const listParams = {
             Bucket: bucketName,
             Prefix: prefix

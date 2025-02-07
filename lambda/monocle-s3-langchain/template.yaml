@@ -34,6 +34,7 @@ Resources:
       Environment:
         Variables:
           NODE_ENV: production
+          MONOCLE_EXPORTER: s3
           MONOCLE_S3_BUCKET_NAME: BUCKET_NAME
           OPENAI_API_KEY: OPENAI_API_KEY
 

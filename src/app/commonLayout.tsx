@@ -21,7 +21,7 @@ function CommonLayout({ children, title, navLink, mainClassName = "" }: CommonLa
                     <span className="text-xl font-semibold text-gray-800">{title}</span>
                     <div className="flex items-center gap-4">
                         <a 
-                            href="https://github.com/okahu/chatbot-coffee-lambda"
+                            href="https://github.com/okahu-demos/chatbot-coffee-lambda"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors group"

@@ -47,6 +47,8 @@ export function ChatMessages({ messages, isLoading }: { messages: any[], isLoadi
 
 interface ChatInputProps {
     onSendMessage: (message: string) => void;
+    autoFocus?: boolean;
+    className?: string;
 }
 
 export const ChatInput = forwardRef<HTMLInputElement, ChatInputProps>(({ onSendMessage }, ref) => {
