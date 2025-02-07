@@ -12,10 +12,11 @@ const tracesBucketName = process.env.AWS_S3BUCKET_NAME || '';
 
 export async function GET(request: Request) {
     const sessionId = request.headers.get('X-Session-Id');
+    logger.info(`Listing S3 files for session: ${sessionId}`);
     if (!sessionId || sessionId.length < 3) {
         return NextResponse.json({ error: 'Session ID not provided' }, { status: 400 });
     }
-    logger.info(`Listing S3 files for session: ${sessionId}`);
+    
 
     try {
         const bucketName = tracesBucketName;

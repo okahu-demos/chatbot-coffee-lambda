@@ -16,7 +16,10 @@ interface UseSessionResult {
 
 export function useSession(): UseSessionResult {
     const [messages, setMessages] = useState<any[]>([]);
-    const initialSessionId = sessionStorage.getItem(STORAGE_KEYS.SESSION_ID);
+    let initialSessionId = '';
+    if(typeof sessionStorage == 'object') {
+        initialSessionId = sessionStorage.getItem(STORAGE_KEYS.SESSION_ID) || ''
+    }
     const [sessionId, setSessionId] = useState<string>(initialSessionId || '');
 
     useEffect(() => {

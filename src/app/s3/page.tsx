@@ -25,7 +25,7 @@ function App() {
                     }
                 });
                 const data = await response.json();
-                setFiles(data.files);
+                setFiles(data.files || []);
             } catch (error) {
                 console.error('Error fetching files:', error);
             }
