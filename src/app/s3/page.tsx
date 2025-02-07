@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import '@/styles/global.css';
 import CommonLayout from '../commonLayout';
+import { useSession } from '@/hooks/sessionHook';
+
 
 // Dynamically import react-json-view to avoid SSR issues
 const ReactJson = dynamic(() => import('react-json-view'), { ssr: false });
@@ -12,18 +14,18 @@ function App() {
     const [showOverlay, setShowOverlay] = useState(false);
     const [jsonContent, setJsonContent] = useState({});
     const [loading, setLoading] = useState(false);
+    const { sessionId } = useSession();
 
     useEffect(() => {
         const fetchFiles = async () => {
             try {
-                const sessionId = sessionStorage.getItem('sessionId');
                 const response = await fetch('/api/s3list', {
                     headers: {
                         'X-Session-Id': sessionId || ''
                     }
                 });
                 const data = await response.json();
-                setFiles(data.files);
+                setFiles(data.files || []);
             } catch (error) {
                 console.error('Error fetching files:', error);
             }
