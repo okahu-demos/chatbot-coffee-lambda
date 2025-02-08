@@ -2,7 +2,7 @@
 
 This repository contains source code for an [AI assistant](#about-this-ai-assistant) that answers questions about coffee to demo how you can use open-source [Monocle](#about-monocle) to make observing and improving GenAI apps easy.  
 
-<img src="assets/img/coffee-ai-assistant.png" width="320">
+<img src="assets/img/coffee-ai-assistant.png" width="320"> -> <img src="assets/img/monocle-trace.png" width="320">
 
 [Ask a question](https://monocle2ai.okahu.io) about coffee and this AI assistant will answer based on a Wikipedia page about coffee using an LLM. You can then explore telemetry to view the traces captured by Monocle resulting from this interaction. 
 
