@@ -1,30 +1,30 @@
-# Monocle Traces Viewer
+# Observing GenAI apps with open-source Monocle
 
-A Next.js application for viewing and managing JSON trace files stored in S3.
+This repository contains source code for an [AI assistant](#about-this-ai-assistant) that answers questions about coffee to demo how you can use open-source [Monocle](#about-monocle) to make observing and improving GenAI apps easy.  
 
-## Features
+![AI assistant](assets/img/coffee-ai-assistant.png)
 
-- 📁 List and browse S3-stored JSON files
-- 👀 Interactive JSON viewer with expandable nodes
-- 🎨 Clean, responsive UI with Tailwind CSS
-- ⚡ Real-time file viewing without download
-- 🌐 Client-side rendering for large JSON files
+[Ask a question](https://monocle2ai.okahu.io) about coffee and this AI assistant will answer based on a Wikipedia page about coffee using an LLM. You can then explore telemetry to view the traces captured by Monocle resulting from this interaction. 
 
-## Getting Started
+### About Monocle 
 
-### Prerequisites
+![Monocle for observing GenAI apps](assets/img/monocle-chat-aws.png)
 
-- Node.js 16.x or later
-- npm or yarn
-- AWS credentials configured for S3 access
+[Monocle](http://monocle2ai.org/) is a GenAI-native community driven open source project created to simplify instrumentation of AI apps so app developers can built high impact, safe and reliable AI apps. 
 
-### Installation
+Monocle is currently a Sandbox project in Linux Foundation AI & Data. In it's first iteration, Monocle helps app developers make GenAI apps observable without having to write last-mile monitoring code. 
 
-1. Clone the repository:
+### About this AI assistant
 
-## Deployment
 
-### AWS S3 Configuration
+## Play with this app in 
 
-1. Create an S3 bucket:
 
+
+## Deploy this app in your cloud
+
+### About Okahu 
+
+Okahu is a team of AI, observability & cloud engineers working to simplify observability for agentic and other GenAI apps. We serve AI app developers, platform engineers and engineering leaders to build reliable, accurate and safer AI apps. We believe in community driven open source software and are a major contributor to GenAI native observability Project Monocle hosted by Linux Foundation.
+
+Connect with us on [Linkedin](https://www.linkedin.com/company/99272699/admin/dashboard/), [Github](https://github.com/okahu) or email us at <dx@okahu.ai> 
