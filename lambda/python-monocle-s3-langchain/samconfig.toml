@@ -4,7 +4,7 @@ version = 0.1
 
 [default]
 [default.global.parameters]
-stack_name = "py-chat-v1"
+stack_name = "test-py-chat-v1"
 
 [default.build.parameters]
 cached = true
@@ -17,7 +17,7 @@ lint = true
 capabilities = "CAPABILITY_IAM"
 confirm_changeset = true
 resolve_s3 = true
-s3_prefix = "py-chat-v1"
+s3_prefix = "test-py-chat-v1"
 region = "us-east-1"
 image_repositories = []
 

@@ -9,7 +9,7 @@ from data.coffee_embedding import embedding_json
 
 embeddings = OpenAIEmbeddings()
 
-def extract_message_and_track_spans(event, context):
+def extract_message(event, context):
     import json
 
     print("event", event)
@@ -71,8 +71,3 @@ Question: {question}"""
 
 def format_docs(docs):
         return "\n\n".join(doc.page_content for doc in docs)
-def wait_for_span_processor_threads():
-    for thread in threading.enumerate():
-        if thread.name.lower().endswith("spanprocessor"):
-            print(f"Thread {thread.name} is still running")
-            thread.join()

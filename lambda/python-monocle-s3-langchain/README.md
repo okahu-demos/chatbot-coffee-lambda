@@ -10,41 +10,32 @@
 
 ## Vector Store Setup
 
-1. Add your text content to `coffeeText.js`
+1. Add your coffee-related text content in `coffee_text.py`.
+2. Generate embeddings using OpenAI's Embedding API:
 
-2. Generate embeddings using OpenAI API:
-   ```bash
-   # Install OpenAI package
-   npm install openai
+```python
+from openai import OpenAI
+import json
 
-   # Create a script to generate embeddings
-   node generateEmbeddings.js
-   ```
+# Initialize OpenAI client
+client = OpenAI(api_key='your-api-key')
 
-   Example generateEmbeddings.js:
-   ```javascript
-   const OpenAI = require('openai');
-   const fs = require('fs');
-   const { coffeeText } = require('./coffeeText');
+# Get your text from coffee_text.py
+from coffee_text import coffee_text
 
-   const openai = new OpenAI({
-     apiKey: 'your-api-key'
-   });
+# Generate embeddings
+response = client.embeddings.create(
+    input=coffee_text,
+    model="text-embedding-3-small"
+)
 
-   async function generateEmbeddings() {
-     const response = await openai.embeddings.create({
-       model: "text-embedding-ada-002",
-       input: coffeeText,
-     });
-     
-     const embeddings = response.data[0].embedding;
-     fs.writeFileSync('coffeeEmbedding.json', JSON.stringify(embeddings, null, 2));
-   }
+# Extract the embeddings
+embeddings = response.data[0].embedding
 
-   generateEmbeddings();
-   ```
-
-3. Store the generated embeddings in `coffeeEmbedding.json`
+# Save to coffee_embedding.py
+with open('coffee_embedding.py', 'w') as f:
+    f.write(f'embedding_json = {json.dumps(embeddings, indent=4)}')
+```
 
 ## Deployment
 
