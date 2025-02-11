@@ -9,8 +9,8 @@ export const POST = async (request: Request) => {
   
   const client = new LambdaClient({
     region: 'us-east-1', credentials: {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID_S3 || '',
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_S3 || ''
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID_LAMBDA || '',
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_LAMBDA || ''
     }
   }); // Initialize Lambda client
   const json = await request.json()

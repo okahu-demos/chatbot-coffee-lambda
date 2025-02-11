@@ -17,8 +17,8 @@ lint = true
 capabilities = "CAPABILITY_IAM"
 confirm_changeset = true
 resolve_s3 = true
-stack_name = "yxc"
-s3_prefix = "yxc"
+stack_name = "test-yxc"
+s3_prefix = "test-yxc"
 region = "us-east-1"
 image_repositories = []
 

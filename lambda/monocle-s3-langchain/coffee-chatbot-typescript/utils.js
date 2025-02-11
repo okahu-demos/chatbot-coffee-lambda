@@ -15,7 +15,7 @@ exports.waitFor = async (ms) => {
   });
 }
 
-exports.extractMessageAndTrackSpans = function extractMessageAndTrackSpans(event, context) {
+exports.extractMessage = function extractMessage(event, context) {
   console.log("event", event)
   console.log("context", context)
   let requestMessage = ""
@@ -35,16 +35,7 @@ exports.extractMessageAndTrackSpans = function extractMessageAndTrackSpans(event
   process.env["sessionId"] = sessionId
   process.env["MONOCLE_S3_KEY_PREFIX_CURRENT"] = sessionId ? sessionId + "__" : ""
   
-  const spans = []
-  const cachedFoo = console.dir
-  console.dir = function (...args) {
-    if (typeof args[0] === 'object' && typeof args[0].traceId == "string") {
-      spans.push(args[0])
-    }
-
-    cachedFoo(...args)
-  }
-  return { requestMessage, cachedFoo, spans }
+  return { requestMessage }
 }
 
 exports.createChatbotComponents = async function createChatbotComponents() {

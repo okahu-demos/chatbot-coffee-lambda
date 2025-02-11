@@ -5,15 +5,15 @@ setupMonocle(
   "openai.app"
 )
 
-const { extractMessageAndTrackSpans, waitFor } = require("./utils.js") 
+const { extractMessage, waitFor } = require("./utils.js") 
 const { langchainInvoke } = require("./langchain.js")
 
 exports.lambdaHandler = async (event, context) => {
-  var { requestMessage, cachedFoo, spans } = extractMessageAndTrackSpans(event, context)
+  var { requestMessage } = extractMessage(event, context)
 
   const llmRagResponse = await langchainInvoke(requestMessage)
 
-  await waitForResponse(cachedFoo);
+  await waitForResponse();
   const response = {
     statusCode: 200,
     body: JSON.stringify({
@@ -24,16 +24,14 @@ exports.lambdaHandler = async (event, context) => {
             text: llmRagResponse
           }
         ]
-      },
-      spans: [...spans]
+      }
     })
   };
   return response;
 };
 
 
-async function waitForResponse(cachedFoo) {
+async function waitForResponse() {
   await waitFor(3000);
-  console.dir = cachedFoo;
 }
 
