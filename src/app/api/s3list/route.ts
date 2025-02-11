@@ -8,7 +8,7 @@ const s3Client = new S3Client({ region: 'us-east-1' , credentials:{
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_S3 || ''
 }});
 
-const tracesBucketName = process.env.MONOCLE_S3_BUCKET_NAME || '';
+const tracesBucketName = process.env.S3_BUCKET_NAME || '';
 
 export async function GET(request: Request) {
     const sessionId = request.headers.get('X-Session-Id');
@@ -20,7 +20,7 @@ export async function GET(request: Request) {
 
     try {
         const bucketName = tracesBucketName;
-        let s3prefix = process.env.MONOCLE_S3_KEY_PREFIX || 'monocle_trace_';
+        let s3prefix = process.env.S3_KEY_PREFIX || 'monocle_trace_';
         let prefix = `${s3prefix}${sessionId}`;
         const listParams = {
             Bucket: bucketName,
