@@ -37,6 +37,7 @@ This repository includes two versions of the app where the GenAI code is built i
 - Front end of this chatbot is built using Next.js and runs in AWS App Runner.   
   - Start with [page.tsx](src/app/page.tsx) for the code of the main chat window. 
   - Entering a message and clicking send invokes a Lambda function in [api/coffeechat](src/app/api/coffeechat/route.ts).
+
 - GenAI code is built using LangChain framework and runs in an AWS Lambda function.
   - See [coffee-chatbot-typescript](lambda/monocle-s3-langchain/coffee-chatbot-typescript/) for the TypeScript version.
       - Entry point is [app.js](lambda/monocle-s3-langchain/coffee-chatbot-typescript/app.js) which handles the payload sent from the front-end.
@@ -48,6 +49,7 @@ This repository includes two versions of the app where the GenAI code is built i
             - OpenAI is also used for the language model. 
       - See [utils.js](lambda/monocle-s3-langchain/coffee-chatbot-typescript/utils.js) for the implementation of `langchainInvoke()`. 
   - See [coffee-chatbot-python](lambda/python-monocle-s3-langchain/coffee-chatbot-python/) for the Python version.
+
 - Monocle instrumentation is added to the entry point of the Lambda function in [app.js](lambda/monocle-s3-langchain/coffee-chatbot-typescript/app.js). 
   - Monocle will trace execution of any GenAI-native code, e.g. `langchainInvoke(requestMessage)`. 
   - For TypeScript, see [app.js](lambda/monocle-s3-langchain/coffee-chatbot-typescript/app.js). 
@@ -56,11 +58,33 @@ This repository includes two versions of the app where the GenAI code is built i
   - See [package.json](lambda/monocle-s3-langchain/coffee-chatbot-typescript/package.json) for the Monocle dependency `"monocle2ai": "^0.0.1-beta.2"`
   - See [template.yaml](lambda/monocle-s3-langchain/template.yaml) for environment variables to configure where Monocle sends the traces.
      - In this example the traces are sent to a bucket in AWS S3. 
+
 - For demo purposes, this example also includes features to [browse](src/app/api/s3list/route.ts) and [view](src/app/s3/page.tsx) Monocle generated traces stored in AWS S3. 
 
 ## Deploy this app in your cloud
 
-// coming soon
+1. Deploy the GenAI code to AWS Lambda
+  - Use AWS SAM client to deploy Lambda function - [TypeScript](lambda/monocle-s3-langchain/README.md) or [Python](lambda/python-monocle-s3-langchain/README.md)
+  - Required environmental variables
+    - `OPENAI_API_KEY` - for chatbot to make call to OpenAI for embedding and language model.
+    - `MONOCLE_EXPORTER` - select `s3` to use the S3 exporter. Other options include blob, okahu and more to come soon. 
+    - `MONOCLE_S3_BUCKET_NAME` - S3 bucket for monocle to write traces to 
+    - `MONOCLE_AWS_ACCESS_KEY_ID` and `MONOCLE_AWS_SECRET_ACCESS_KEY` - credentials for monocle to write traces to S3 bucket
+    - `MONOCLE_S3_KEY_PREFIX` - any prefix added to trace file name for this specific app. Used when storing traces from multiple apps in a single bucket.
+  - Get Lambda function name for use in step 2. 
+
+2. Configure front-end code to use AWS Lambda function and deploy to AWS App Runner
+  - Build settings 
+    - Start command `npm start` and Build command `npm install && npm run build` 
+    - Runtime `Nodejs 18`
+  - Required environment variables
+    - `AWS_LAMBDA_FUNC_NAME` - name of the Lambda function from step #1 above. 
+    - `AWS_ACCESS_KEY_ID_LAMBDA` and `AWS_SECRET_ACCESS_KEY_LAMBDA` - credentials to invoke Lambda function 
+    - `S3_BUCKET_NAME` - name of S3 bucket where monocle stores the traces for telemetry viewer to list/display. Must match `MONOCLE_S3_BUCKET_NAME` from step #1. 
+    - `AWS_ACCESS_KEY_ID_S3` and `AWS_SECRET_ACCESS_KEY_S3` - credentials to read the S3 bucket 
+    - `S3_KEY_PREFIX` - any prefix added to trace file name for this specific app. Must match `MONOCLE_S3_KEY_PREFIX` from step #1. 
+  - Get the default domain from AWS Runner to access the chatbot
+
 
 ### About Okahu 
 
