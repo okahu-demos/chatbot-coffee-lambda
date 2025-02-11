@@ -16,7 +16,7 @@
     "langchain": "^0.2.19",
     "@langchain/core": "^0.2.19",
     "ignore": "^5.2.0",
-    "monocle2ai": "^0.0.1-beta.2"
+    "monocle2ai": "^0.0.1-beta.3"
   },
   "scripts": {
     "test": "mocha tests/unit/"
