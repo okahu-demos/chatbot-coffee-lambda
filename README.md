@@ -14,7 +14,7 @@ This repository contains source code for an [AI assistant](#about-this-ai-assist
 
 Monocle is currently a [Sandbox](https://lfaidata.foundation/projects/monocle/) project in Linux Foundation AI & Data. In it's first iteration, Monocle helps app developers make GenAI apps observable without having to write last-mile monitoring code. 
 
-<img src="assets/img/monocle-ts-codeblock.png" width="430">  <img src="assets/img/monocle-py-codeblock.png" width="430">
+<img src="assets/img/monocle-ts-codeblock.png" width="307">  <img src="assets/img/monocle-py-codeblock.png" width="320">
 
 
 ### About this AI assistant
