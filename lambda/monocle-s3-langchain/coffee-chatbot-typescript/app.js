@@ -1,6 +1,6 @@
 
 // Monocle instrumentation
-const { setupMonocle } = require("monocle2ai")
+const { setupMonocle, setScopes } = require("monocle2ai")
 setupMonocle(
   "openai.app"
 )
@@ -9,9 +9,15 @@ const { extractMessage, waitFor } = require("./utils.js")
 const { langchainInvoke } = require("./langchain.js")
 
 exports.lambdaHandler = async (event, context) => {
-  var { requestMessage } = extractMessage(event, context)
+  var { requestMessage, sessionId } = extractMessage(event, context)
 
-  const llmRagResponse = await langchainInvoke(requestMessage)
+  const llmRagResponse = await setScopes(
+    {
+      "sessionId": sessionId
+    },
+    () => {
+      return langchainInvoke(requestMessage)
+    })
 
   await waitForResponse();
   const response = {
