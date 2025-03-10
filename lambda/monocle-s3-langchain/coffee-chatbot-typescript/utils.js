@@ -35,7 +35,7 @@ exports.extractMessage = function extractMessage(event, context) {
   process.env["sessionId"] = sessionId
   process.env["MONOCLE_S3_KEY_PREFIX_CURRENT"] = sessionId ? sessionId + "__" : ""
   
-  return { requestMessage }
+  return { requestMessage, sessionId }
 }
 
 exports.createChatbotComponents = async function createChatbotComponents() {
