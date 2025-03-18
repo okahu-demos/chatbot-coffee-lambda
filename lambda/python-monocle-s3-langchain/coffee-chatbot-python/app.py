@@ -10,7 +10,7 @@ setup_monocle_telemetry(workflow_name="openai.app")
 def lambda_handler(event, context):
     request_message = extract_message(event, context)
     llm_rag_response = langchain_invoke(request_message)
-    time.sleep(5)  # Sleep for 3 seconds
+    print("llm_rag_response: ", llm_rag_response)
     return {
         "statusCode": 200,
         "body": json.dumps(
