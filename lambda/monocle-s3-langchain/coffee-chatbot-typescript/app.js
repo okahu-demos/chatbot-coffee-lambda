@@ -19,7 +19,7 @@ exports.lambdaHandler = async (event, context) => {
       return langchainInvoke(requestMessage)
     })
 
-  await waitForResponse();
+  // await waitForResponse();
   const response = {
     statusCode: 200,
     body: JSON.stringify({
@@ -35,7 +35,6 @@ exports.lambdaHandler = async (event, context) => {
   };
   return response;
 };
-
 
 async function waitForResponse() {
   await waitFor(3000);

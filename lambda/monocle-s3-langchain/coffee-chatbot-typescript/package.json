@@ -10,13 +10,13 @@
     "require-in-the-middle": "7.4.0",
     "openai": "^4.73.1",
     "@aws-sdk/client-s3": "^3.705.0",
-    "@langchain/community": "^0.2.19",
-    "@langchain/openai": "^0.2.11",
+    "@langchain/community": "^0.3.35",
+    "@langchain/openai": "^0.4.4",
     "globals": "^15.12.0",
-    "langchain": "^0.2.19",
-    "@langchain/core": "^0.2.19",
+    "langchain": "^0.3.19",
+    "@langchain/core": "^0.3.42",
     "ignore": "^5.2.0",
-    "monocle2ai": "^0.0.1-beta.10"
+    "monocle2ai": "^0.1.1"
   },
   "scripts": {
     "test": "mocha tests/unit/"
