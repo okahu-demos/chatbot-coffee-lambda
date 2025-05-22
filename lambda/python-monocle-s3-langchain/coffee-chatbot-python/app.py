@@ -4,7 +4,7 @@ from chatbot_lib.utils import extract_message
 from chatbot_lib.langchain import langchain_invoke
 import json
 
-setup_monocle_telemetry(workflow_name="openai.app")
+setup_monocle_telemetry(workflow_name="chatbot-coffee-lambda-py-langchain")
 
 
 def lambda_handler(event, context):

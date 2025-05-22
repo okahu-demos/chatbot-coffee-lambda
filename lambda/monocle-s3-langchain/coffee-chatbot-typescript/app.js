@@ -2,7 +2,7 @@
 // Monocle instrumentation
 const { setupMonocle, setScopes } = require("monocle2ai")
 setupMonocle(
-  "openai.app"
+  "chatbot-coffee-lambda-ts-langchain"
 )
 
 const { extractMessage, waitFor } = require("./utils.js") 
