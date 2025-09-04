@@ -17,9 +17,10 @@ lint = true
 capabilities = "CAPABILITY_IAM"
 confirm_changeset = true
 resolve_s3 = true
-s3_prefix = "test-py-chat-v1"
+s3_prefix = "py-chat-v1"
 region = "us-east-1"
 image_repositories = []
+stack_name = "py-chat-v1"
 
 [default.package.parameters]
 resolve_s3 = true

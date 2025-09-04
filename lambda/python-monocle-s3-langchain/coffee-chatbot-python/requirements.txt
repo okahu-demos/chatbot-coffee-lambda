@@ -1,6 +1,6 @@
 langchain
 langchain-openai
 openai
-monocle-apptrace==0.3.0
+monocle-apptrace==0.5.2
 numpy
 # boto3
