@@ -1,7 +1,6 @@
 import { logger } from '@/libs/Logger';
 import { NextResponse } from 'next/server';
-import { S3Client, ListObjectsV2Command, GetObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
 
 const s3Client = new S3Client({ region: 'us-east-1' , credentials:{
     accessKeyId: process.env.AWS_ACCESS_KEY_ID_S3 || '',
@@ -43,21 +42,15 @@ export async function GET(request: Request) {
 
         const files = await Promise.all(
             sortedContents.map(async (item) => {
-                const getObjectParams = {
-                    Bucket: bucketName,
-                    Key: item.Key,
-                };
-                const url = await getSignedUrl(s3Client, new GetObjectCommand(getObjectParams), { expiresIn: 3600 });
                 return {
                     key: item.Key,
-                    url,
                     lastModified: item.LastModified,
                 };
             })
         );
 
         return NextResponse.json({ files });
-    } catch (error) {
+    } catch (error: any) {
         logger.error(`Error listing S3 files for session ${sessionId}:`, error);
         return NextResponse.json({ error: 'Error listing S3 files' }, { status: 500 });
     }
