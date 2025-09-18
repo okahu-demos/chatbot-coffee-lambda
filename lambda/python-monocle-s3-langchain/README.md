@@ -46,16 +46,21 @@ Deploy the application using AWS SAM:
    sam build
    ```
 
-2. Deploy to AWS:
+2. command to run locally to test:
+   ```bash
+   sam local invoke --event ./events/event.json
+   ```
+
+3. Deploy to AWS:
    ```bash
    sam deploy --guided
    ```
 
-3. Follow the prompts to configure your deployment:
+4. Follow the prompts to configure your deployment:
    - Stack Name: Choose a name for your CloudFormation stack
    - AWS Region: Choose your target region
    - Confirm changes before deploy: Yes
    - Allow SAM CLI IAM role creation: Yes
    - Save arguments to configuration file: Yes
 
-4. Wait for the deployment to complete. SAM will provide the Lambda function's ARN in the outputs.
+5. Wait for the deployment to complete. SAM will provide the Lambda function's ARN in the outputs.
