@@ -33,11 +33,19 @@ function App() {
         fetchFiles();
     }, []);
 
-    const handleFileClick = async (url: string) => {
+    const handleFileClick = async (file: any) => {
         try {
             setLoading(true);
-            console.log('Fetching JSON:', url);
-            const response = await fetch(url);
+            const response = await fetch(`/api/s3view?key=${encodeURIComponent(file.key)}`, {
+                headers: {
+                    'X-Session-Id': sessionId || ''
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch file');
+            }
+
             const ndJsonData = await response.text();
             const jsonData = ndJsonData
                 .split('\n')
@@ -78,7 +86,7 @@ function App() {
                                 >
                                     <td
                                         className="px-6 py-4 text-sm font-medium text-gray-900"
-                                        onClick={() => handleFileClick(file.url)}
+                                        onClick={() => handleFileClick(file)}
                                     >
                                         {file.key}
                                     </td>
