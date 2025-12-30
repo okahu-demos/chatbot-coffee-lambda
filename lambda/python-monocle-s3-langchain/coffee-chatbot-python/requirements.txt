@@ -1,6 +1,6 @@
-langchain
-langchain-openai
-openai
-monocle-apptrace[aws]
-numpy
-# boto3
+langchain==1.2.0
+langchain-openai==1.1.6
+openai==2.14.0
+--extra-index-url https://okahu.jfrog.io/artifactory/api/pypi/okahu-patch-pypi/simple
+monocle-apptrace[aws]==0.7.0b2
+numpy==2.4.0
