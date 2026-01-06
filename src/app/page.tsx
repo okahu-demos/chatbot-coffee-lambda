@@ -40,11 +40,17 @@ function App() {
         },
         body: JSON.stringify({message})
       });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
       console.log('Response:', data);
       return data;
     } catch (error) {
       console.error('Error', error);
+      throw error;
     }
   };
 
@@ -61,11 +67,34 @@ function App() {
     scrollToBottom();
     setIsLoading(true);
 
-    sendMessage(input).then((response:ChatResponse ) => {
-      setMessages([...messages, newMessage, response.message]);
-      setIsLoading(false);
-      scrollToBottom();
-    });
+    sendMessage(input)
+      .then((response: ChatResponse) => {
+        if (response && response.message) {
+          setMessages([...messages, newMessage, response.message]);
+        } else {
+          const errorMessage = {
+            role: "assistant",
+            content: [{
+              text: "Sorry, I couldn't process your message. Please try again."
+            }]
+          };
+          setMessages([...messages, newMessage, errorMessage]);
+        }
+        setIsLoading(false);
+        scrollToBottom();
+      })
+      .catch((error) => {
+        console.error('Failed to send message:', error);
+        const errorMessage = {
+          role: "assistant",
+          content: [{
+            text: "Sorry, there was an error processing your message. Please try again."
+          }]
+        };
+        setMessages([...messages, newMessage, errorMessage]);
+        setIsLoading(false);
+        scrollToBottom();
+      });
   };
 
   return (
