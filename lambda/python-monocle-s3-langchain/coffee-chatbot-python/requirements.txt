@@ -1,5 +1,5 @@
 langchain==1.2.0
 langchain-openai==1.1.6
 openai==2.14.0
-monocle-apptrace[aws]==0.7.3
+monocle-apptrace[aws]==0.7.4
 numpy==2.4.0
